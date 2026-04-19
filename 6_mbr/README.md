@@ -9,4 +9,6 @@ fasm mbr-password.asm mbr.bin
 
 Пример запуска кастомного MBR через Bochs:
 
-![](demo.mp4)
+https://github.com/user-attachments/assets/1c46f2d9-1a6d-46f6-857d-9cdd6f48dc52
+
+
