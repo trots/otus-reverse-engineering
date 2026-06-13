@@ -1,0 +1,62 @@
+;
+; Terminator.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System ; TODO: specify appropriate Class
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider    = %ManufacturerName%
+CatalogFile = Terminator.cat
+DriverVer   = ; TODO: set DriverVer in stampinf property pages
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+Terminator.sys = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName% = Standard,NT$ARCH$.10.0...16299 ; %13% support introduced in build 16299
+
+[Standard.NT$ARCH$.10.0...16299]
+%Terminator.DeviceDesc% = Terminator_Device, Root\Terminator ; TODO: edit hw-id
+
+[Terminator_Device.NT]
+CopyFiles = File_Copy
+
+[File_Copy]
+Terminator.sys
+
+;-------------- Service installation
+[Terminator_Device.NT.Services]
+AddService = Terminator,%SPSVCINST_ASSOCSERVICE%, Terminator_Service_Inst
+
+; -------------- Terminator driver install sections
+[Terminator_Service_Inst]
+DisplayName    = %Terminator.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\Terminator.sys
+
+[Terminator_Device.NT.Wdf]
+KmdfService = Terminator, Terminator_wdfsect
+
+[Terminator_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE = 0x00000002
+ManufacturerName = "<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "Terminator Installation Disk"
+Terminator.DeviceDesc = "Terminator Device"
+Terminator.SVCDESC = "Terminator Service"
