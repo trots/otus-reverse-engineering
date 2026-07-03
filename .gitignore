@@ -1,8 +1,10 @@
 .venv
 .vs
 x64/
+build/
 opcode_variants.json
 *.rzdb
 *.vcxproj*
 *.bin*
 *.img
+*.txt.user
