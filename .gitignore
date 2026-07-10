@@ -8,3 +8,4 @@ opcode_variants.json
 *.bin*
 *.img
 *.txt.user
+*.DMP
