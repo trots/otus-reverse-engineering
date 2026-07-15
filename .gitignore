@@ -9,3 +9,4 @@ opcode_variants.json
 *.img
 *.txt.user
 *.DMP
+shell_runner.exe
