@@ -2,9 +2,11 @@
 .vs
 x64/
 build/
+Debug/
 opcode_variants.json
 *.rzdb
-*.vcxproj*
+*.vcxproj.filters
+*.vcxproj.user
 *.bin*
 *.img
 *.txt.user
