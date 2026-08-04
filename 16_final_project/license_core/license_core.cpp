@@ -14,6 +14,9 @@ int CharValue(char c)
 
 bool DecodeGroup(const char* group, size_t len, uint32_t* out)
 {
+    if (len > 4)
+        return false;
+
     char buf[5];
     memcpy(buf, group, len);
     buf[len] = '\0';
