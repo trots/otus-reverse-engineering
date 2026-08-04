@@ -1,7 +1,7 @@
 .venv
 .vs
 x64/
-build/
+build*
 Debug/
 opcode_variants.json
 *.rzdb
