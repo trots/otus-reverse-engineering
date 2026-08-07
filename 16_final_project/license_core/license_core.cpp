@@ -14,7 +14,7 @@ int CharValue(char c)
 
 bool DecodeGroup(const char* group, size_t len, uint32_t* out)
 {
-    if (len > 4)
+    if (len == 0 || len > 4)
         return false;
 
     char buf[5];
@@ -45,6 +45,9 @@ LicenseInfo ParseLicenseKey(const char* key, size_t len)
 {
     LicenseInfo info{false, 0, 0};
 
+    if (key == nullptr)
+        return info;
+
     if (len < 19)
         return info;
     if (key[4] != '-' || key[9] != '-' || key[14] != '-')
@@ -59,6 +62,9 @@ LicenseInfo ParseLicenseKey(const char* key, size_t len)
 
     if (!DecodeGroup(key, 4, &productId))
         return info;
+    if (productId > 0xFFFF)
+        return info;
+
     if (!DecodeGroup(key + 5, 4, &expHigh))
         return info;
     if (!DecodeGroup(key + 10, 4, &expLow))
